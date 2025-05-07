@@ -1,9 +1,8 @@
-
 export const graphQLSchema = `#graphql
 
 type Query {
     hello: String
-
+    name : String
 }
 
 type Mutation {
@@ -15,4 +14,3 @@ type Post {
     content: String
 }
 `;
-    
