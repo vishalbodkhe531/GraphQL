@@ -2,23 +2,16 @@ import dotenv from "dotenv";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { graphQLSchema } from "./graphql/schema/schema";
+import { connectDB } from "./lib/db";
 
 dotenv.config({ path: "./.env" });
 
 export const envMode = process.env.NODE_ENV?.trim() || "DEVELOPMENT";
-
 const port = Number(process.env.PORT) || 3000;
 
-// const server = new ApolloServer({
-//   typeDefs: `type Query {
-//     hello: String
-//   }`,
-//   resolvers: {
-//     Query: {
-//       hello: () => "Hello, world!",
-//     },
-//   },
-// });
+const MONGO_URI = process.env.MONGO_URI;
+
+connectDB(process.env.MONGO_URI!);
 
 const server = new ApolloServer({
   typeDefs: graphQLSchema,
