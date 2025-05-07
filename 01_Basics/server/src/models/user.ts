@@ -1,6 +1,4 @@
-
 import mongoose from "mongoose";
-
 
 interface IUser {
   name: string;
@@ -10,7 +8,6 @@ interface IUser {
 }
 
 type IUserModel = mongoose.Model<IUser> & {};
-
 
 const schema = new mongoose.Schema({
   name: {
@@ -27,7 +24,27 @@ const schema = new mongoose.Schema({
     required: [true, "Please enter password"],
     select: false,
   },
+  googleId: {
+    type: String,
+    default: null,
+  },
+  avatar: {
+    type: String,
+    default: null,
+  },
+  role: {
+    type: String,
+    default: "user",
+  },
+  varified: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
     type: Date,
     default: Date.now,
   },
